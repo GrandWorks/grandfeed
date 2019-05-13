@@ -36,7 +36,7 @@ function it_compile_feeds()
     $compiled_array = array();
     $instafeeds = json_decode($instafeed->get_feed());
     $twitterfeeds = json_decode($twitter->get_tweets());
-    $twitter_url = "http://twitter.com/".$twitterfeeds[0]->user->screen_name."/status/";
+    // $twitter_url = "http://twitter.com/".$twitterfeeds[0]->user->screen_name."/status/";
     
     $instagram_array=array();
     if($show_instagram_feed==1)

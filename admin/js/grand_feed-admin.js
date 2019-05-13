@@ -29,4 +29,61 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	$( window ).load(function() {
+		$("#details-form").submit(function(e){
+			var showInstagram = $("#show-instagram:checked").val();
+			var showTwitter = $("#show-twitter:checked").val();
+			var instagramCount = 0;
+			var twitterCount = 0;
+			// Instagram
+			if(showInstagram)
+			{
+				var instagramFields = $("[data-validate-instagram]");
+
+				instagramFields.each(function(index){
+					var field = instagramFields[index];
+					if(field.value.trim()=="")
+					{
+						$("#"+field.id).css("border-color","red");
+						$("#"+field.id).siblings(".error").html("Field is required").css("color","red");
+					}
+					else
+					{
+						$("#"+field.id).css("border-color","#ddd");
+						$("#"+field.id).siblings(".error").html("");
+						instagramCount++;
+					}
+				});
+			}
+
+			// Twitter
+			if(showTwitter)
+			{
+				var twitterFields = $("[data-validate-twitter]");
+				twitterFields.each(function(index){
+					var field = twitterFields[index];
+					if(field.value.trim()=="")
+					{
+						$("#"+field.id).css("border-color","red");
+						$("#"+field.id).siblings(".error").html("Field is required").css("color","red");
+					}
+					else
+					{
+						$("#"+field.id).css("border-color","#ddd");
+						$("#"+field.id).siblings(".error").html("");
+						twitterCount++;
+					}
+				});
+			}
+
+			if(instagramCount != $("[data-validate-instagram]").length || twitterCount != $("[data-validate-twitter]").length)
+			{
+				// $("#details-form").submit();
+				e.preventDefault();
+			}
+
+		});
+	});
+	 
+
 })( jQuery );
