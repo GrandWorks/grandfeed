@@ -20,7 +20,7 @@
  * @subpackage Grand_feed/admin
  * @author     GrandWorks <hello@grandworks.co>
  */
-require_once( plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-grand-feed-wrapper.php' );
+include_once( plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-grand-feed-wrapper.php' );
 class Grand_feed_Admin {
 
 	/**
@@ -120,11 +120,11 @@ class Grand_feed_Admin {
 
 	public function plugin_settings_page_content()
 	{
-		if( $_POST['updated'] === 'true' ){
+		if( isset($_POST['updated']) && $_POST['updated'] === 'true' ){
 			$this->handle_form();
 		}
 
-		if($_POST['fetch-data']==='true')
+		if( isset($_POST['fetch-data']) && $_POST['fetch-data']==='true')
 		{
 			$this->handle_fetch();
 		}
@@ -136,27 +136,69 @@ class Grand_feed_Admin {
 	{
 		if(!isset($_POST['grandfeed_form']) || ! wp_verify_nonce( $_POST['grandfeed_form'], 'grandfeed' ))
 		{
-	?>
-			<div class="error">
+	
+			echo '<div class="error">
            		<p>Sorry, your nonce was not correct. Please try again.</p>
-        	</div>
-	<?php
+        	</div>';
+
 			exit;
 		}
 
-		$show_instagram = $_POST['show-instagram'];
-		$show_twitter = $_POST['show-twitter'];
+		if(isset($_POST['show-instagram']))
+		{
+			$show_instagram = $_POST['show-instagram'];
+		}
 		
-		$instagram_client_id = sanitize_text_field($_POST['instagram-client-id']);
-		$instagram_access_token = sanitize_text_field($_POST['instagram-access-token']);
-		$instagram_feed_count = sanitize_text_field($_POST['instagram-feed-count']);
-		$twitter_oauth = sanitize_text_field($_POST['twitter-oauth']);
-		$twitter_oauth_secret = sanitize_text_field($_POST['twitter-oauth-secret']);
-		$twitter_consumer_key = sanitize_text_field($_POST['twitter-consumer-key']);
-		$twitter_consumer_secret = sanitize_text_field($_POST['twitter-consumer-secret']);
-		$twitter_feed_count = sanitize_text_field($_POST['twitter-feed-count']);
-		$post_feed_count = sanitize_text_field($_POST['post-feed-count']);
+		if(isset($_POST['show-twitter']))
+		{
+			$show_twitter = $_POST['show-twitter'];
+		}
+		
+		if(isset($_POST['instagram-client-id']))
+		{
+			$instagram_client_id = sanitize_text_field($_POST['instagram-client-id']);
+		}
+		if(isset($_POST['instagram-access-token']))
+		{
+			$instagram_access_token = sanitize_text_field($_POST['instagram-access-token']);
+		}
+		
+		if(isset($_POST['instagram-feed-count']))
+		{
+			$instagram_feed_count = sanitize_text_field($_POST['instagram-feed-count']);
+		}
+		
+		if(isset($_POST['twitter-oauth']))
+		{
+			$twitter_oauth = sanitize_text_field($_POST['twitter-oauth']);
+		}
+		
+		if(isset($_POST['twitter-oauth-secret']))
+		{
+			$twitter_oauth_secret = sanitize_text_field($_POST['twitter-oauth-secret']);
+		}
+		
+		if(isset($_POST['twitter-consumer-key']))
+		{
+			$twitter_consumer_key = sanitize_text_field($_POST['twitter-consumer-key']);
+		}
+		
+		if(isset($_POST['twitter-consumer-secret']))
+		{
+			$twitter_consumer_secret = sanitize_text_field($_POST['twitter-consumer-secret']);
+		}
+		
+		if(isset($_POST['twitter-feed-count']))
+		{
+			$twitter_feed_count = sanitize_text_field($_POST['twitter-feed-count']);
+		}
+		
+		if(isset($_POST['post-feed-count']))
+		{
+			$post_feed_count = sanitize_text_field($_POST['post-feed-count']);
 
+		}
+		
 		update_option( 'grand-feed-show-instagram', $show_instagram );
 		update_option( 'grand-feed-show-twitter', $show_twitter );
 		

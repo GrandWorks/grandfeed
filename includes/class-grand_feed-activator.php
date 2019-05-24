@@ -20,7 +20,7 @@
  * @subpackage Grand_feed/includes
  * @author     GrandWorks <hello@grandworks.co>
  */
-include plugin_dir_path( __FILE__ ) . 'includes/class-grand-feed-database.php';
+include_once(plugin_dir_path( __FILE__ ) . 'class-grand-feed-database.php');
 class Grand_feed_Activator {
 
 	/**
