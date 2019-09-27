@@ -76,7 +76,8 @@ function it_compile_feeds()
     
     $pots_feeds = new WP_Query(array(
         "post_type" => "",
-        "posts_per_page" => $post_count
+        "posts_per_page" => $post_count,
+        "post_status" => "publish"
     ));
 
     $posts_array=array();
