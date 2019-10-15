@@ -83,7 +83,8 @@ class GrandFeedWrapper {
         
         $pots_feeds = new WP_Query(array(
             "post_type" => "",
-            "posts_per_page" => $this->post_count
+            "posts_per_page" => $this->post_count,
+            "post_status" => "publish"
         ));
 
         $posts_array=array();
@@ -95,7 +96,7 @@ class GrandFeedWrapper {
                 $pots_feeds->the_post();
                 $posts_temp_array=array(
                     "post_url" => get_permalink(),
-                    "featured_image" => get_the_post_thumbnail_url(),
+                    "featured_image" => get_the_post_thumbnail_url(null, "grand-thumbnail"),
                     "title" => get_the_title(),
                     "excerpt" => get_the_excerpt(),
                     "date" => get_the_date()
