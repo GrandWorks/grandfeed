@@ -74,6 +74,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-grand-feed-database.php';
  * @since    1.0.0
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-grand-feed-wrapper.php';
+require plugin_dir_path( __FILE__ ) . 'includes/api.php';
 
 function fetch_feeds($type_array=true)
 {
